@@ -1,0 +1,34 @@
+{
+  "name": "@dlarsson-se/sortable-table",
+  "version": "0.1.4",
+  "description": "Sortable HTML table.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlarssonse/sortable-table.git"
+  },
+  "keywords": [
+    "ng",
+    "api"
+  ],
+  "author": "David Larsson <dlarsson.se@gmail.com> (https://www.dlarsson.se)",
+  "license": "ISC",    
+  "peerDependencies": {
+    "@angular/common": "^7.1.0",
+    "@angular/core": "^7.1.0",
+    "@angular/platform-browser": "^7.1.1",
+    "core-js": "^2.5.7",
+    "rxjs": "^6.3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.10",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.2",
+    "ts-jest": "^23.10.5",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.1.6",
+    "zone.js": "^0.8.26"
+  },
+  "dependencies": {
+  }  
+}
