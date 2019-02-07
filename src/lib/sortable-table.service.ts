@@ -19,4 +19,5 @@ export class SortableTableService {
 export interface ColumnSortedEvent {
     sortColumn: string;
     sortDirection: string;
+    sortData: any;
 }

@@ -1,6 +1,6 @@
 {
   "name": "@dlarsson-se/sortable-table",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Sortable HTML table.",
   "repository": {
     "type": "git",
@@ -8,14 +8,15 @@
   },
   "keywords": [
     "ng",
-    "api"
+    "api",
+    "html"
   ],
   "author": "David Larsson <dlarsson.se@gmail.com> (https://www.dlarsson.se)",
   "license": "ISC",    
   "peerDependencies": {
     "@angular/common": "^7.1.0",
     "@angular/core": "^7.1.0",
-    "@angular/platform-browser": "^7.1.1",
+    "@angular/platform-browser": "^7.1.0",
     "core-js": "^2.5.7",
     "rxjs": "^6.3.3"
   },

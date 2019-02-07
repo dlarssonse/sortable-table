@@ -21,6 +21,7 @@ export class SortableTableDirective implements OnInit, OnDestroy {
         // subscribe to sort changes so we emit and event for this data table
         // if there is no observers, use the default sorting function.
         this.columnSortedSubscription = this.sortService.columnSorted$.subscribe(event => {
+            event.sortData = this.sortableData;
             if (this.sorted.observers.length === 0) {
                 this.onSorted(event);
             } else {
@@ -36,7 +37,18 @@ export class SortableTableDirective implements OnInit, OnDestroy {
     onSorted(event: ColumnSortedEvent) {
         this.sortableData.sort((a, b) => {
             if (event.sortColumn) {
-                if (event.sortColumn.indexOf('.') > 0) {
+                if (event.sortColumn.indexOf('()') > 0) {
+                    // Sorting by function, experimental.
+                    const func = event.sortColumn.substr(0, event.sortColumn.indexOf('()'));
+                    const av = a[func]();
+                    const bv = b[func]();
+                    if (event.sortDirection === 'asc') {
+                      return av < bv  ? -1 : 1;
+                    } else {
+                      return av > bv ? -1 : 1;
+                    }
+                } else if (event.sortColumn.indexOf('.') > 0) {
+                    // Sorting by property on element
                     const sc = event.sortColumn.split('.');
                     if (a[sc[0]][sc[1]] === undefined) {
                         a[sc[0]][sc[1]] = '';
@@ -50,6 +62,7 @@ export class SortableTableDirective implements OnInit, OnDestroy {
                         return a[sc[0]][sc[1]] > b[sc[0]][sc[1]]  ? -1 : 1;
                     }
                 } else {
+                    // Sorting by property
                     if (a[event.sortColumn] === undefined) {
                         a[event.sortColumn] = '';
                     }
