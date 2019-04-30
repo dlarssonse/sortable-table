@@ -27,5 +27,6 @@ export interface ColumnSortedEvent {
     sortDirection: string;
     sortData: any;
     filterColumn: string;
+    filterType: string;         // Exact, Contains, Above (number), Below (number)
     filterValue: string;
 }

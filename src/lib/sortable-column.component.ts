@@ -35,12 +35,14 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
 
     @HostListener('click', ['$event.target'])
     sort(event: HTMLElement) {
-        if (event.className === 'icono-filter') {
+        if (event.className.indexOf('icono-filter') >= 0) {
+            this.filterValue = this.filterValue ? '' : 'e';
             this.sortService.columnFiltered({
                 sortColumn: this.sortableColumn,
                 sortDirection: '',
                 filterColumn: this.filterableColumn,
-                filterValue: 'London',
+                filterValue: this.filterValue,
+                filterType: 'Contains',
                 sortData: []
             });
         } else {
@@ -50,6 +52,7 @@ export class SortableColumnComponent implements OnInit, OnDestroy {
                 sortDirection: this.sortableDirection,
                 filterColumn: this.filterableColumn,
                 filterValue: '',
+                filterType: '',
                 sortData: []
             });
         }

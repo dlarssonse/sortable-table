@@ -1,4 +1,5 @@
-<i class="icono-filter" *ngIf="filterableColumn"></i>
+<i class="icono-filter" *ngIf="filterableColumn && !filterValue"></i>
+<i class="icono-filter filtered" *ngIf="filterableColumn && filterValue"></i>
 <ng-content></ng-content>
 <i class="chevron up" *ngIf="sortableDirection === 'asc'" ></i>
 <i class="chevron down" *ngIf="sortableDirection === 'desc'"></i>

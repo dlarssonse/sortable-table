@@ -24,19 +24,32 @@
 
 .icono-filter {
 	width: 0;
-	height: 0.25em;
+	height: 0;
 	border: 3px solid;
 	border-bottom: none;
 	border-left-color: transparent;
 	border-right-color: transparent;
 	padding: 2px;
 	box-shadow: inset 0 7px;
-	margin: 9px 4px;
+	margin: 0px 4px;
 	position: relative;
 	top: 0.55em;
+	opacity: 0.5;
+	color: #ccc;
 }
 
 .icono-filter:hover {
 	color: red;
 	cursor: pointer;
+}
+
+.icono-filter.filtered {
+	color: red;
+	transform: rotate(90deg);
+	opacity: 1;
+}
+
+.icono-filter.filtered:hover {
+	transform: rotate(90deg);
+	opacity: 0.5;
 }

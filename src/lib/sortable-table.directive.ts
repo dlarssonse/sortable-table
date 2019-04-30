@@ -57,15 +57,25 @@ export class SortableTableDirective implements OnInit, OnDestroy {
                 if (a[sc[0]][sc[1]] === undefined) {
                     a[sc[0]][sc[1]] = '';
                 }
-                a['_displayed'] = a[sc[0]][sc[1]] === event.filterValue;
-                return a[sc[0]][sc[1]] === event.filterValue;
+                if (event.filterType === 'Contains') {
+                    a['_displayed'] = a[sc[0]][sc[1]].toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+                    return a[sc[0]][sc[1]].toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+                } else {
+                    a['_displayed'] = a[sc[0]][sc[1]] === event.filterValue;
+                    return a[sc[0]][sc[1]] === event.filterValue;
+                }
             } else {
                 // Sorting by property
                 if (a[event.sortColumn] === undefined) {
                     a[event.sortColumn] = '';
                 }
-                a['_displayed'] = a[event.sortColumn] === event.filterValue;
-                return a[event.sortColumn] === event.filterValue;
+                if (event.filterType === 'Contains') {
+                    a['_displayed'] = a[event.sortColumn].toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+                    return a[event.sortColumn].toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+                } else {
+                    a['_displayed'] = a[event.sortColumn] === event.filterValue;
+                    return a[event.sortColumn] === event.filterValue;
+                }
             }
         });
     }
