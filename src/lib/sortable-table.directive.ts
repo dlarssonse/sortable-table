@@ -15,7 +15,11 @@ export class SortableTableDirective implements OnInit, OnDestroy {
     @Output()
     sorted = new EventEmitter();
 
+    @Output()
+    filtered = new EventEmitter();
+
     private columnSortedSubscription: Subscription;
+    private columnFilteredSubscription: Subscription;
 
     ngOnInit() {
         // subscribe to sort changes so we emit and event for this data table
@@ -26,6 +30,42 @@ export class SortableTableDirective implements OnInit, OnDestroy {
                 this.onSorted(event);
             } else {
                 this.sorted.emit(event);
+            }
+        });
+
+        // subscribe to sort changes so we emit and event for this data table
+        // if there is no observers, use the default sorting function.
+        this.columnFilteredSubscription = this.sortService.columnFiltered$.subscribe(event => {
+            event.sortData = this.sortableData;
+            if (this.filtered.observers.length === 0) {
+                this.onFiltered(event);
+            } else {
+                this.filtered.emit(event);
+            }
+        });
+    }
+
+    /**
+     * Default filtering function if not specific sort function is defined.
+     * @param event filtering event containing column name and filter value.
+     */
+    onFiltered(event: ColumnSortedEvent) {
+        this.sortableData.filter((a) => {
+            if (event.filterColumn.indexOf('.') > 0) {
+                // Sorting by property on element
+                const sc = event.filterColumn.split('.');
+                if (a[sc[0]][sc[1]] === undefined) {
+                    a[sc[0]][sc[1]] = '';
+                }
+                a['_displayed'] = a[sc[0]][sc[1]] === event.filterValue;
+                return a[sc[0]][sc[1]] === event.filterValue;
+            } else {
+                // Sorting by property
+                if (a[event.sortColumn] === undefined) {
+                    a[event.sortColumn] = '';
+                }
+                a['_displayed'] = a[event.sortColumn] === event.filterValue;
+                return a[event.sortColumn] === event.filterValue;
             }
         });
     }
@@ -84,6 +124,7 @@ export class SortableTableDirective implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         this.columnSortedSubscription.unsubscribe();
+        this.columnFilteredSubscription.unsubscribe();
     }
 
 }
