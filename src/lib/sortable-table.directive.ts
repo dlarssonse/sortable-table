@@ -51,7 +51,13 @@ export class SortableTableDirective implements OnInit, OnDestroy {
      */
     onFiltered(event: ColumnSortedEvent) {
         this.sortableData.filter((a) => {
-            if (event.filterColumn.indexOf('.') > 0) {
+            if (event.filterColumn.indexOf('()') > 0) {
+                // Sorting by function, experimental.
+                const func = event.filterColumn.substr(0, event.filterColumn.indexOf('()'));
+                const av = a[func]();
+                a['_displayed'] = av.toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+                return av.toLowerCase().indexOf(event.filterValue.toLowerCase()) !== -1;
+            } else if (event.filterColumn.indexOf('.') > 0) {
                 // Sorting by property on element
                 const sc = event.filterColumn.split('.');
                 if (a[sc[0]][sc[1]] === undefined) {

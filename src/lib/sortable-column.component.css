@@ -1,9 +1,9 @@
-.chevron {
+.st-chevron {
     margin-left: 2px;
     margin-right: 2px;
 }
 
-.chevron::before {
+.st-chevron::before {
 	border-style: solid;
 	border-width: 0.15em 0.15em 0 0;
 	content: '';
@@ -17,12 +17,12 @@
     width: 0.25em;
 }
 
-.chevron.down:before {
+.st-chevron.down:before {
 	top: 0.25em;
 	transform: rotate(135deg);
 }
 
-.icono-filter {
+.st-icon {
 	width: 0;
 	height: 0;
 	border: 3px solid;
@@ -38,18 +38,30 @@
 	color: #ccc;
 }
 
-.icono-filter:hover {
+.st-icon:hover {
 	color: red;
 	cursor: pointer;
 }
 
-.icono-filter.filtered {
+.st-icon.filtered {
 	color: red;
 	transform: rotate(90deg);
 	opacity: 1;
 }
 
-.icono-filter.filtered:hover {
+.st-icon.filtered:hover {
 	transform: rotate(90deg);
 	opacity: 0.5;
+}
+
+div.st-filter {
+	display: none;
+	position: absolute;
+	top: 10px;
+	left: 0px;
+	border: 1px solid #666;
+	border-radius: 3px;
+	box-shadow: 5px 5px 5px #ccc;
+	padding: 5px;
+	background-color: #fff;
 }

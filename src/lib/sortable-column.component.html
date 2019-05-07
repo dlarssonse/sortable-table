@@ -1,5 +1,9 @@
-<i class="icono-filter" *ngIf="filterableColumn && !filterValue"></i>
-<i class="icono-filter filtered" *ngIf="filterableColumn && filterValue"></i>
+<i class="st-icon" #filterIcon *ngIf="filterableColumn && !filterValue"></i>
+<i class="st-icon filtered" #filterIconFiltered *ngIf="filterableColumn && filterValue"></i>
 <ng-content></ng-content>
-<i class="chevron up" *ngIf="sortableDirection === 'asc'" ></i>
-<i class="chevron down" *ngIf="sortableDirection === 'desc'"></i>
+<i class="st-chevron up" *ngIf="sortableDirection === 'asc'" ></i>
+<i class="st-chevron down" *ngIf="sortableDirection === 'desc'"></i>
+<div class="st-filter" #filterDiv>
+    <input type="text" #filterInput class="st-filter input" [value]="filterValue" (keyup)="filterChange($event)" (blur)="filterBlur()">
+</div>
+
