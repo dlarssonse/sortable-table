@@ -1,6 +1,6 @@
 {
   "name": "@dlarsson-se/sortable-table",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Sortable HTML table.",
   "repository": {
     "type": "git",
@@ -12,13 +12,13 @@
     "html"
   ],
   "author": "David Larsson <dlarsson.se@gmail.com> (https://www.dlarsson.se)",
-  "license": "ISC",    
+  "license": "ISC",
   "peerDependencies": {
-    "@angular/common": "^7.1.0",
-    "@angular/core": "^7.1.0",
-    "@angular/platform-browser": "^7.1.0",
-    "core-js": "^2.5.7",
-    "rxjs": "^6.3.3"
+    "@angular/common": "^7.2.14",
+    "@angular/core": "^7.2.14",
+    "@angular/platform-browser": "^7.2.14",
+    "core-js": "^3.0.1",
+    "rxjs": "^6.5.1"
   },
   "devDependencies": {
     "@types/jest": "^23.3.10",
@@ -29,7 +29,5 @@
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.1.6",
     "zone.js": "^0.8.26"
-  },
-  "dependencies": {
-  }  
+  }
 }
